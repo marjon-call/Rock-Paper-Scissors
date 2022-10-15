@@ -67,7 +67,7 @@ contract RockPaperScissorsSolid {
 
         if (_player1Move == _player2Move) {
             _player1.call{value: address(this).balance / 2}("");
-            _player2.call{value: address(this).balance / 2}("");
+            _player2.call{value: address(this).balance}("");
             emit TieGame(_player1, _player2);
         } else if ((_player1Move == 1 && _player2Move == 3 ) || (_player1Move == 2 && _player2Move == 1)  || (_player1Move == 3 && _player2Move == 2)) {
             _player1.call{value: address(this).balance}("");
