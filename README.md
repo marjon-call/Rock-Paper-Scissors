@@ -18,5 +18,9 @@ Below shows the gas savings by using ```RockPaperScissorsHybrid.sol``` instead o
 ![gasSavingsForRPS](https://user-images.githubusercontent.com/25438255/194196775-a42aba7c-3d06-42c9-8716-ddeae9656b1b.png)
 
 
-## Coming Soon...
-I am in the process of converting this contract to be written entirley in yul.
+## YUL
+```RockPaperScissorsYul.sol``` was created to show how the game can be written in yul.  To test it, open remix and call the contract using the same paramaters for calldata. I have not tested the gas consumption as rigouriosly yet since hardhat does not support contracts fully written in yul. However here is my initial findings using remix: <br>
+
+```playGame(uin8 _move) external payable```: min: 31480 gas, max: 39815 gas  <br>
+```createGame(address _player1, address _player2) external```: 71348 gas <br>
+```terminateGame() external```: 29372 gas
