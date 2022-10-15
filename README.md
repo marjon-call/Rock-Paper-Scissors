@@ -23,5 +23,5 @@ Below shows the gas savings by using ```RockPaperScissorsHybrid.sol``` instead o
 
 ```playGame(uin8 _move) external payable```: min: 31,480 gas, max: 39,815 gas  <br>
 ```createGame(address _player1, address _player2) external```: 71,348 gas <br>
-```terminateGame() external```: 29,372 gas
+```terminateGame() external```: 29,372 gas <br>
 Contract Deployment: 349,966 gas
