@@ -23,7 +23,20 @@ contract RockPaperScissorsHybrid {
 
     constructor() {
         gameCost = 0.05 ether;
-        gameLength = 2880; 
+        gameLength = 28800; 
+    }
+
+
+    function getStorage() public view returns(bytes32, bytes32, bytes32, bytes32) {
+
+        assembly {
+            mstore(0x00, sload(0))
+            mstore(0x20, sload(1))
+            mstore(0x40, sload(2))
+            mstore(0x60, sload(3))
+
+            return(0x00, 0x80)
+        }
     }
 
     // must be called by one of the players
@@ -65,6 +78,7 @@ contract RockPaperScissorsHybrid {
         address _player2 = player2;
         uint8 _player2Move = player2Move;
 
+
         if (_player1Move == _player2Move) {
             _player1.call{value: address(this).balance / 2}("");
             _player2.call{value: address(this).balance}("");
@@ -94,9 +108,7 @@ contract RockPaperScissorsHybrid {
         assembly {
             sstore(0, number())
             sstore(2, _player1)
-            let gameLengthShifted := shr(mul(23,8), sload(3))
-            let gameLengthVal := shl(mul(23,8), gameLengthShifted)
-            let glAndGip := or(0x0000000000000000000001000000000000000000000000000000000000000000, gameLengthVal)
+            let glAndGip := or(0x0000000000000000000001000000000000000000000000000000000000000000, sload(3))
             sstore(3, or(glAndGip, _player2))
         }
         
